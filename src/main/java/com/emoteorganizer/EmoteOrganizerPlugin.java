@@ -36,7 +36,6 @@ import lombok.AllArgsConstructor;
 import lombok.Value;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
-import net.runelite.api.ScriptEvent;
 import net.runelite.api.events.ClientTick;
 import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.events.WidgetLoaded;
@@ -521,9 +520,10 @@ public class EmoteOrganizerPlugin extends Plugin
 			return false;
 		}
 
-		ScriptEvent event = client.createScriptEvent(listener)
-			.setSource(widget);
-		event.run();
+		client.createScriptEventBuilder(listener)
+			.setSource(widget)
+			.build()
+			.run();
 		return true;
 	}
 
